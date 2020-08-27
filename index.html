@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <title>じゃんけん</title>
+            <div>
+                <table>
+                <tr>
+                    <th class="anata">あなた</th>
+                    <th class="pc">コンピューター</th>
+                </tr>
+                <tr>
+                    <td id="sum_anata">0</td>
+                    <td id="sum_pc">0</td>
+                </tr>
+                </table>
+            </div>
+        </header>
+        <div id="title">じゃんけん</div>
+        <div id="result"></div>
+        <!-- あなた -->
+        <div id="waku-anata" class="waku">
+            <span></span>
+            <div class="vs">あなた「<p></p>」</div>
+            <ul id="anata">
+            <li id="gu_btn"><img src="img/gu_01.png"></li>
+            <li id="cho_btn"><img src="img/cho_01.png"></li>
+            <li id="par_btn"><img src="img/par_01.png"></li>
+            </ul>
+        </div>
+        <!-- PC -->
+        <div id="waku-pc" class="waku">
+            <span></span>
+            <div class="vs-pc">コンピューター「<p></p>」</div>
+            <ul id="pc">
+            <li id="gu_btn_pc"><img src="img/gu_02.png"></li>
+            <li id="cho_btn_pc"><img src="img/cho_02.png"></li>
+            <li id="par_btn_pc"><img src="img/par_02.png"></li>
+            </ul>
+        </div>
+        <!--リセット-->
+        
+</div>
+
+
+<script>
+function getid() {
+// あなたの結果
+let result_anata
+// 得点
+let sum_anata = 0;
+let sum_pc = 0;
+  $('#anata li').on('click',function () {
+    //選択されたli
+    let li_id_anata = $(this).attr('id');
+    let r = Math.floor(Math.random() * 3 + 1); //ランダム変数
+    let li_id_pc;
+    if(r == '1'){
+        li_id_pc ='gu_btn_pc';
+    }else if(r == '2'){
+        li_id_pc ='cho_btn_pc';
+    }else if(r == '3'){
+        li_id_pc ='par_btn_pc';
+    }
+    //選択されてないli
+    let del = $('#anata li').not('#anata li#'+ li_id_anata);
+    let del_pc = $('#pc li').not('#pc li#'+ li_id_pc);
+　　//liの背景処理   
+    $('#'+ li_id_anata + ',' + '#'+ li_id_pc).addClass("on"); //クリックしたliのクラスにon設定
+    del.add(del_pc).removeClass('on');//クリックしたli以外のliのクラスからon削除
+　　//クリックしたliのあなたカッコ文字表示
+    if(li_id_anata == 'gu_btn'){
+        $('.vs p ,.vs-pc p').text("グー");
+    }else if(li_id_anata == 'cho_btn'){
+        $('.vs p').text("チョキ");
+    }else if(li_id_anata == 'par_btn'){
+        $('.vs p').text("パー");
+    }
+　　//ランダムに選ばれたPCのliカッコ文字表示
+    if(li_id_pc == 'gu_btn_pc'){
+        $('.vs-pc p').text("グー");
+    }else if(li_id_pc == 'cho_btn_pc'){
+        $('.vs-pc p').text("チョキ");
+    }else if(li_id_pc == 'par_btn_pc'){
+        $('.vs-pc p').text("パー");
+    }
+　　//勝ち負け判定  
+    if(li_id_anata == 'gu_btn' && li_id_pc == 'gu_btn_pc'){
+        result_anata = 0;
+    }else if(li_id_anata == 'gu_btn' && li_id_pc == 'cho_btn_pc'){
+        result_anata = 1;
+        sum_anata ++;
+    }else if(li_id_anata == 'gu_btn' && li_id_pc == 'par_btn_pc'){
+        result_anata = -1;
+        sum_pc ++;
+    }else if(li_id_anata == 'cho_btn' && li_id_pc == 'gu_btn_pc'){
+        result_anata = -1;
+        sum_pc ++;
+    }else if(li_id_anata == 'cho_btn' && li_id_pc == 'cho_btn_pc'){
+        result_anata = 0;
+    }else if(li_id_anata == 'cho_btn' && li_id_pc == 'par_btn_pc'){
+        result_anata = 1;
+        sum_anata ++;
+    }else if(li_id_anata == 'par_btn' && li_id_pc == 'gu_btn_pc'){
+        result_anata = 1;
+        sum_anata ++;
+    }else if(li_id_anata == 'par_btn' && li_id_pc == 'cho_btn_pc'){
+        result_anata = -1;
+        sum_pc ++;
+    }else if(li_id_anata == 'par_btn' && li_id_pc == 'par_btn_pc'){
+        result_anata = 0;
+    }
+    // 勝ち負けアイコン表示
+    if(result_anata == 1){
+        // $("#waku-anata span").css('display','block');
+        $("#waku-anata span").html('<img src=\"img/win.png\">');
+        $("#waku-pc span").html('<img src=\"img/lose.png\">');
+    }else if(result_anata == -1){
+        // $("#waku-anata span").css('display','none');
+        $("#waku-anata span").html('<img src=\"img/lose.png\">');
+        $("#waku-pc span").html('<img src=\"img/win.png\">');
+    }
+    else{
+        // $("#waku-anata span").css('display','none');
+        $("#waku-anata span").empty();
+        $("#waku-pc span").empty();
+    }
+    // 得点
+    $("#sum_anata").text(sum_anata);
+    $("#sum_pc").text(sum_pc);
+    let win_font = {
+        "color":"#FF0000",
+        "font-size":"40px",
+    }
+    let win_reset = '<div id="reset">もう一回チャレンジ</div>';
+    if(sum_anata >= 10){
+        $('#anata li').css('pointer-events','none');
+        $("#sum_anata").css(win_font);
+        $("#waku-pc").after(win_reset);
+    }
+    if(sum_pc >= 10){
+        $('#anata li').css('pointer-events','none');
+        $("#sum_pc").css(win_font);
+        $("#waku-pc").after(win_reset);
+    }
+    $("#reset").click(function(){
+        sum_anata = 0;
+        sum_pc = 0;
+        $("#sum_anata").text(sum_anata);
+        $("#sum_pc").text(sum_pc);
+        $("#sum_anata").removeAttr('style');
+        $("#sum_pc").removeAttr('style');
+        $("#waku-anata span").empty();
+        $("#waku-pc span").empty();
+        $("#anata li").removeAttr('style');
+        $("#reset").remove();
+        $("#anata li , #pc li").removeClass();
+    })
+  })
+}
+getid();
+</script>
+</body>
+</html>
