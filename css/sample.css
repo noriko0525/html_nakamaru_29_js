@@ -1,0 +1,180 @@
+#wrapper{
+    width: 680px;
+    margin:0 auto;
+    padding:40px 0 0;
+    position: relative;
+}
+#result{
+    position: absolute;
+    top:145px;
+    right: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    height: 50px;
+}
+#result img{
+    height: 95%;
+}
+header{
+    width: 680px;
+    position: relative;
+    margin:0 auto;
+}
+header table{
+    position: absolute;
+    top:-25px;
+    right:0;
+    width: 300px;
+    border-collapse: collapse;
+}
+table th, table td{
+    border: solid 6px black;
+    width: 160px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+table th{
+    height: 30px;
+}
+table td{
+    height: 50px;
+}
+table th.anata{
+    background:#CCCC00 ;
+}
+table th.pc{
+    background:#B0C4DE ;
+}
+#title{
+    width: 100%;
+    /* text-align: center; */
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+.vs,.vs-pc{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin:0 0 20px 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.vs span{
+    position: absolute;
+    top:-15px;
+    left:110px;
+    width:120px;
+    height: 50px;
+    font-size: 40px;
+    background-color: lightcoral;
+    border:solid 3px #ffffff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .5);
+    /* transform: rotate(-25deg); */
+}
+.vs-pc span{
+    position: absolute;
+    top:0;
+    left:50px;
+    width:100px;
+    height: 40px;
+    background-color: lightcoral;
+}
+.vs p,.vs-pc p{
+    width: 120px;
+    font-size: 35px;
+    font-weight: bold;
+    padding:5px 0 0 0;
+    background-color: #ff0000;
+}
+#anata,#pc{
+    width: 660px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#anata li,#pc li{
+    width: 170px;
+    height: 170px;
+    border:solid 7px #000000;
+    background-color: #ffffff;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* 子要素をflexboxにより縦方向に揃える */
+    justify-content: center; /* 子要素をflexboxにより中央に配置する */
+    align-items: center;  /* 子要素をflexboxにより中央に配置する */ 
+    transform: rotateZ(45deg);
+}
+#anata li{
+    cursor : pointer;
+}
+#anata li img,#pc li img{
+    width: 100px;
+}
+#anata li.on{
+    background:palevioletred;
+}
+#pc li.on{
+    background:#99CC66 ;
+}
+.waku{
+    padding:20px 0;
+    border: solid 7px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+#waku-anata{
+    background-color: #CCCC00;
+    position: relative;
+}
+#waku-pc{
+    background-color: #B0C4DE;
+    position: relative;
+}
+#waku-anata span{
+    position: absolute;
+    top:-40px;
+    left: -40px;
+    transform: rotate(-25deg);
+}
+#waku-anata span img{
+    width: 140px;
+    height: 140px;
+}
+#waku-pc span{
+    position: absolute;
+    top:-40px;
+    left: -40px;
+    transform: rotate(-25deg);
+}
+#waku-pc span img{
+    width: 140px;
+    height: 140px;
+}
+#reset{
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+    width: 300px;
+    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    color:#FFFFFF;
+    text-align: center;
+    border:solid 7px #000000;
+    background-color: rgb(84, 0, 122);
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 1px rgba(0, 0, 0, .5);
+}
+#reset:hover{
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .5);
+    cursor:pointer;
+    color:rgb(84, 0, 122);
+    background-color:#cd9ae4;
+}
